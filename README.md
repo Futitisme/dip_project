@@ -847,13 +847,6 @@ The `mean_motion` feature captures this difference.
 3. **Simple fusion method:** Logistic regression may not capture complex interactions
 4. **No fine-tuning of ViT:** Performance could improve with backbone adaptation
 
-## 8.4 Future Work
-
-1. **Domain Adaptation Techniques:** Use adversarial training or domain-invariant representations
-2. **Temporal Modeling:** Incorporate LSTM/Transformer for sequence understanding
-3. **Attention Mechanisms:** Learn which contextual features matter for each video
-4. **Larger Datasets:** Validate on UCF-Crime and XD-Violence
-
 ---
 
 # 9. Conclusions
