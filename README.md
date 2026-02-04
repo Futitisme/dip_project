@@ -1,7 +1,7 @@
 # Violence Detection in Video Surveillance: Enhancing Deep Learning with Contextual Features
 
 **Author:** Lena Vasilev  
-**Date:** February 4, 2026  
+**Date:** February, 2026  
 **Institution:** University of Siena
 
 ---
