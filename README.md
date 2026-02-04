@@ -17,8 +17,7 @@
 7. [Ablation Studies](#7-ablation-studies)
 8. [Discussion](#8-discussion)
 9. [Conclusions](#9-conclusions)
-10. [Appendix: Reproduction Guide](#appendix-reproduction-guide)
-11. [References](#references)
+10. [References](#references)
 
 ---
 
@@ -497,7 +496,7 @@ Best model saved at epoch 5 (early stopping restored).
 | 1 | 0.7059 | 57.14% | 0.6658 | 59.25% |
 | 2 | 0.6617 | 60.56% | 0.6481 | 62.30% |
 | 3 | 0.6528 | 61.85% | 0.6545 | 61.20% |
-| **6** | **0.6433** | **63.15%** | **0.6392** | **64.03%** ⭐ |
+| **6** | **0.6433** | **63.15%** | **0.6392** | **64.03%**  |
 | 11 | 0.6303 | 64.32% | 0.6453 | 62.13% |
 
 ### Test Results
@@ -890,126 +889,6 @@ For deploying violence detection in real-world surveillance:
 2. **Train on diverse data:** Include low-light and low-quality footage in training
 3. **Monitor lighting conditions:** Systems should flag low-light scenarios for human review
 4. **Use ensemble approaches:** Combine deep learning with traditional computer vision features
-
----
-
-# Appendix: Reproduction Guide
-
-## A.1 Environment Setup
-
-```bash
-# 1. Clone/navigate to project directory
-cd /Volumes/KINGSTON/siena_finals/dip
-
-# 2. Create virtual environment
-python3.9 -m venv venv
-source venv/bin/activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-```
-
-**Key Dependencies:**
-- TensorFlow 2.15.0
-- TensorFlow Hub
-- OpenCV (opencv-python)
-- NumPy, Matplotlib, tqdm
-- scikit-learn
-
-## A.2 Dataset Preparation
-
-### UBI-Fights
-```bash
-# Download from: https://socia-lab.di.ubi.pt/EventDetection/
-# Extract to: datasets/UBI_Fights/
-
-# Expected structure:
-datasets/UBI_Fights/
-├── videos/
-│   ├── fight/      # F*.mp4
-│   └── normal/     # N*.mp4
-└── annotation/     # *.csv files
-```
-
-### CCTV-Fights
-```bash
-# Request access: https://rose1.ntu.edu.sg/dataset/cctvFights/
-# Extract to: datasets/CCTV_Fights/
-
-# Expected structure:
-datasets/CCTV_Fights/
-├── Videos/         # *.mpeg
-└── groundtruth.json
-```
-
-## A.3 Running Experiments
-
-### In-Dataset Training
-
-```bash
-# Train on UBI-Fights
-./venv/bin/python scripts/train_UBI_simple.py
-
-# Train on CCTV-Fights
-./venv/bin/python scripts/train_CCTV_simple.py
-```
-
-### Cross-Dataset Evaluation
-
-```bash
-# UBI → CCTV (requires trained UBI model)
-./venv/bin/python scripts/eval_cross_dataset_UBI_to_CCTV.py
-
-# CCTV → UBI (requires trained CCTV model)
-./venv/bin/python scripts/eval_cross_dataset_CCTV_to_UBI.py
-```
-
-### Context Features
-
-```bash
-# Extract basic context features
-./venv/bin/python scripts/compute_context_features.py
-
-# Extract extended features (spike detection, dynamics)
-./venv/bin/python scripts/compute_context_features_extended.py
-```
-
-### Late Fusion Training
-
-```bash
-# Train fusion model and evaluate
-./venv/bin/python scripts/train_context_fusion.py
-```
-
-### Ablation Analysis
-
-```bash
-# Run full ablation study
-./venv/bin/python scripts/ablation_analysis.py
-```
-
-## A.4 Output Files
-
-| File | Description |
-|------|-------------|
-| `results/figures/*.png` | All visualizations |
-| `results/context_features/*.json` | Extracted context features |
-| `results/*_results.md` | Per-experiment reports |
-| `checkpoints/` | Saved model weights |
-
-## A.5 Viewing Results
-
-All figures are saved in `results/figures/`:
-
-| Figure | Description |
-|--------|-------------|
-| `UBI_confusion_matrix.png` | In-dataset UBI confusion matrix |
-| `CCTV_confusion_matrix.png` | In-dataset CCTV confusion matrix |
-| `cross_dataset_*_confusion.png` | Cross-dataset confusion matrices |
-| `cross_dataset_*_scores.png` | Score distributions |
-| `context_*.png` | Context feature visualizations |
-| `fusion_*.png` | Fusion results |
-| `ablation_*.png` | Ablation study plots |
 
 ---
 
